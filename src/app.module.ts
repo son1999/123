@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import { Exchange } from './entities/exchange.entity';
 import { User } from './entities/user.entity';
 import { AccountModule } from './account/account.module';
+import { UserExchange } from './entities/user-exchange.entity';
 
 @Module({
   imports: [
@@ -13,11 +14,11 @@ import { AccountModule } from './account/account.module';
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
-      port: 55553,
+      port: 5432,
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: [User, Exchange],
+      entities: [User, Exchange, UserExchange],
       synchronize: true,
     }),
     AccountModule

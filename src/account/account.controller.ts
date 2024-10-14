@@ -5,19 +5,8 @@ import { AccountService } from './account.service';
 export class AccountController {
     constructor(private accountService: AccountService) { }
 
-    @Get('balance/:userId')
-    async getBalance(@Param('userId') userId: number) {
-        try {
-            const balance = await this.accountService.getBalance(userId);
-            return {
-                success: true,
-                data: balance,
-            };
-        } catch (error) {
-            return {
-                success: false,
-                message: error.message,
-            };
-        }
+    @Get(':userId/balance')
+    async getUserAPIKeys(@Param('userId') userId: string) {
+        return this.accountService.getBalance(parseInt(userId));
     }
 }

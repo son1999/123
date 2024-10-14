@@ -1,17 +1,23 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
-import { Exchange } from './exchange.entity';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
+import { UserExchange } from './user-exchange.entity';
 
-@Entity()
+@Entity('users')
 export class User {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
-    apiKey: string;
+    @Column({ type: 'varchar', length: 255 })
+    username: string;
 
-    @Column()
-    secretKey: string;
+    @Column({ type: 'varchar', length: 255 })
+    password: string;
 
-    @ManyToOne(() => Exchange, (exchange) => exchange.users)
-    exchange: Exchange;
+    @CreateDateColumn({ type: 'timestamp' })
+    created_at: Date;
+
+    @UpdateDateColumn({ type: 'timestamp' })
+    updated_at: Date;
+
+    @OneToMany(() => UserExchange, userExchange => userExchange.user)
+    userExchanges: UserExchange[];
 }

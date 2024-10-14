@@ -1,6 +1,6 @@
 export const exchanges = {
-    'BINANCE': 'binance',
-    'OKX': 'okx',
-    'MEXC': 'mexc',
-    'BYBIT': 'bybit'
+    'BINANCE': 'BINANCE',
+    'OKX': 'OKX',
+    'MEXC': 'MEXC',
+    'BYBIT': 'BYBIT'
 }
